@@ -1,22 +1,203 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+import { ClientRouter } from "astro:transitions";
+import type { AstroInstance } from "astro";
+
+import HorizontalRule from "../components/HorizontalRule.astro";
+import OSButton from "../components/OSButton.astro";
+import ScrollBar from "../components/ScrollBar.astro";
+
+import FullscreenImg from "./fullscreen.png";
+import WindowedImg from "./windowed.png";
+import CloseImg from "./close.png";
+import Logo from "./logo.png";
+
+import pageMap from "../pages/_map.json";
+
+const components = import.meta.glob("../pages/*.astro", { eager: true }) as {
+    [key: string]: AstroInstance;
+};
+---
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const content = document.querySelector<HTMLDivElement>("#content")!;
+        const height = content.getBoundingClientRect().height;
+        console.log(content.clientHeight);
+        const charHeight = parseInt(getComputedStyle(content).fontSize);
+        content.style.height = "0px";
+        let i = 0;
+        const interval = setInterval(() => {
+            i++;
+            content.style.height = `${i * charHeight}px`;
+            if (i >= height / charHeight) {
+                content.style.height = "auto";
+                clearInterval(interval);
+            }
+        }, 20);
+
+        const searchParams = new URLSearchParams(location.search);
+        if (searchParams.has("accessCode")) {
+            localStorage?.setItem(
+                "accessCode",
+                searchParams.get("accessCode")!,
+            );
+        }
+
+        const crtOverlay =
+            document.querySelector<HTMLDivElement>("#crt-overlay")!;
+        let crt = localStorage?.getItem("crt") == "true";
+        if (crt) {
+            crtOverlay.ariaHidden = "false";
+        }
+
+        document
+            .querySelector<HTMLDivElement>("#crt")
+            ?.addEventListener("click", () => {
+                crt = !crt;
+                crtOverlay.ariaHidden = (!crt).toString();
+                localStorage.setItem("crt", crt.toString());
+            });
+
+        const appWindow = document.querySelector<HTMLDivElement>("#window")!;
+        let fullscreen = localStorage?.getItem("fullscreen") == "true";
+        if (fullscreen) {
+            appWindow.ariaExpanded = "true";
+        }
+        document
+            .querySelector<HTMLDivElement>("#fullscreen")
+            ?.addEventListener("click", () => {
+                fullscreen = !fullscreen;
+                localStorage?.setItem("fullscreen", fullscreen.toString());
+                appWindow.ariaExpanded = fullscreen.toString();
+            });
+
+        document
+            .querySelector<HTMLDivElement>("#close")
+            ?.addEventListener("click", () => {
+                appWindow.style.display = "none";
+            });
+
+        let lastClick = -Infinity;
+        const icon = document.querySelector<HTMLButtonElement>("#icon")!;
+        const overlay = document.querySelector<HTMLDivElement>("#overlay")!;
+
+        icon.addEventListener("click", () => {
+            if (Date.now() - lastClick < 500) {
+                appWindow.style.display = "flex";
+                overlay.style.background = "rgba(0, 0, 0, 0)";
+            } else {
+                lastClick = Date.now();
+                overlay.style.background = "rgba(0, 0, 255, 0.3)";
+            }
+        });
+    });
+</script>
+
+<html lang="en" class="h-full" transition:animate="none">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Bálint's Website</title>
+
+        <ClientRouter />
+    </head>
+    <body class="bg-teal">
+        <div
+            id="crt-overlay"
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 z-50 h-full w-full bg-linear-[to_bottom,rgba(0,0,0,0.3)_2px,transparent_2px] bg-size-[100%_4px] bg-repeat-y backdrop-blur-[0.6px] aria-hidden:hidden"
+        >
+        </div>
+        <button class="relative m-2 flex flex-col items-center p-0.5" id="icon">
+            <img class="w-[60px]" src={Logo.src} alt="Icon" />
+            <span class="wrap-break-word text-white">HTTP DOS Prompt</span>
+            <div class="absolute inset-0" id="overlay"></div>
+        </button>
+        <div
+            class="pointer-events-none absolute inset-0 flex h-full w-full items-center justify-center"
+        >
+            <div
+                class="group embossed bg-silver pointer-events-auto flex h-[calc(100%-0.5rem)] w-full flex-col p-1 aria-expanded:h-[calc(100%-1rem)] aria-expanded:w-full md:h-[calc(100%-6rem)] md:w-[min(100%-8rem,80rem)]"
+                aria-expanded="false"
+                id="window"
+            >
+                <header
+                    class="flex h-8 items-center justify-between bg-[#0000a8] p-1 text-white select-none"
+                >
+                    <div class="flex items-center gap-2">
+                        <img class="h-6 shrink-0" src={Logo.src} alt="Logo" />
+                        <span class="font-mono text-2xl">HTTP-DOS Prompt</span>
+                    </div>
+                    <div class="hidden gap-1 md:flex">
+                        <OSButton id="crt">
+                            <span class="-mt-2 block h-5 font-mono text-lg"
+                                >CRT</span
+                            >
+                        </OSButton>
+                        <OSButton id="fullscreen">
+                            <img
+                                src={FullscreenImg.src}
+                                class="block h-5 w-6 group-aria-expanded:hidden"
+                            />
+                            <img
+                                src={WindowedImg.src}
+                                class="hidden h-5 w-6 group-aria-expanded:block"
+                            />
+                        </OSButton>
+                        <OSButton id="close">
+                            <img src={CloseImg.src} class="h-5 w-6" />
+                        </OSButton>
+                    </div>
+                </header>
+                <HorizontalRule />
+                <main
+                    class="debossed flex grow overflow-y-hidden bg-black font-mono text-base/8 text-white"
+                >
+                    <div
+                        id="scroll-container"
+                        class="h-full grow overflow-y-auto p-2"
+                    >
+                        <div
+                            id="content"
+                            class="@container w-[round(down,100%,1rem)] overflow-y-hidden px-4 py-8"
+                        >
+                            <nav class="mb-8 flex">
+                                <div
+                                    class={`w-[round(down,(100%-31rem)/2,1rem)] h-full`}
+                                >
+                                </div>
+                                {
+                                    pageMap.map((data) => (
+                                        <a
+                                            class="bg-purple hover:bg-fuchsia mr-4 inline-block cursor-pointer"
+                                            href={
+                                                data.type == "component"
+                                                    ? components[
+                                                          `../pages/${data.component}`
+                                                      ]?.url || "/"
+                                                    : data.url
+                                            }
+                                            target={
+                                                data.type == "link"
+                                                    ? "_blank"
+                                                    : "_self"
+                                            }
+                                        >
+                                            {data.name}
+                                        </a>
+                                    ))
+                                }
+                            </nav>
+                            <slot />
+                        </div>
+                    </div>
+                    <ScrollBar targetId="scroll-container" />
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

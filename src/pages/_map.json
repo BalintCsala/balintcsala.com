@@ -1,0 +1,27 @@
+[
+    {
+        "type": "component",
+        "component": "index.astro",
+        "name": "Home"
+    },
+    {
+        "type": "component",
+        "component": "about.astro",
+        "name": "About"
+    },
+    {
+        "type": "component",
+        "component": "projects.astro",
+        "name": "Projects"
+    },
+    {
+        "type": "link",
+        "url": "https://blog.balintcsala.com",
+        "name": "Blog"
+    },
+    {
+        "type": "link",
+        "url": "https://github.com/BalintCsala/website",
+        "name": "Source"
+    }
+]

@@ -1,0 +1,100 @@
+---
+import Up from "./scrollbar-icon-up.png";
+import Down from "./scrollbar-icon-down.png";
+
+interface Props {
+    targetId: string;
+}
+
+const { targetId } = Astro.props;
+---
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        document
+            .querySelectorAll<HTMLDivElement>(".scrollbar")
+            .forEach((scrollbar) => {
+                const track =
+                    scrollbar.querySelector<HTMLDivElement>(".track")!;
+                const knob = scrollbar.querySelector<HTMLDivElement>(".knob")!;
+                const up = scrollbar.querySelector<HTMLButtonElement>(".up")!;
+                const down =
+                    scrollbar.querySelector<HTMLButtonElement>(".down")!;
+
+                const targetId = scrollbar.dataset.targetId as string;
+                const target = document.querySelector(`#${targetId}`)!;
+                if (!target) {
+                    console.error(`No element with id ${targetId}`);
+                    return;
+                }
+
+                let dragging = false;
+                let startY = 0;
+                let startScroll = 0;
+                knob.addEventListener("mousedown", (e) => {
+                    dragging = true;
+                    startY = e.clientY;
+                    startScroll = target.scrollTop;
+                });
+                window.addEventListener("mouseup", () => (dragging = false));
+                window.addEventListener("blur", () => (dragging = false));
+                window.addEventListener("mousemove", (e) => {
+                    if (!dragging) {
+                        return;
+                    }
+                    const totalHeight = target.scrollHeight;
+                    const trackHeight = track.clientHeight;
+                    target.scroll(
+                        0,
+                        ((e.clientY - startY) / trackHeight) * totalHeight +
+                            startScroll -
+                            4,
+                    );
+                });
+
+                up.addEventListener("click", () => {
+                    target.scrollBy(0, -100);
+                });
+
+                down.addEventListener("click", () => {
+                    target.scrollBy(0, 100);
+                });
+
+                const updateScrollBar = () => {
+                    const scrollOffset = target.scrollTop;
+                    const totalHeight = target.scrollHeight;
+                    const visibleHeight = target.getBoundingClientRect().height;
+                    const trackHeight = track.clientHeight;
+                    if (totalHeight <= visibleHeight) {
+                        scrollbar.style.display = "none";
+                    } else {
+                        scrollbar.style.display = "";
+                    }
+
+                    knob.style.top = `${(scrollOffset / totalHeight) * 100}%`;
+                    knob.style.height = `${(visibleHeight / totalHeight) * trackHeight - 8}px`;
+                };
+
+                setInterval(updateScrollBar, 20);
+
+                updateScrollBar();
+            });
+    });
+</script>
+
+<div class="scrollbar flex shrink-0 flex-col" data-target-id={targetId}>
+    <button class="up embossed">
+        <img class="h-6 w-6" src={Up.src} alt="┴" />
+    </button>
+    <div
+        class="track relative grow bg-[repeating-conic-gradient(silver_0_25%,white_0_50%)] bg-size-[0.25rem_0.25rem] bg-repeat"
+    >
+        <div
+            class="knob bg-silver embossed absolute right-0 left-0 select-none"
+        >
+        </div>
+    </div>
+    <button class="down embossed">
+        <img class="h-6 w-6" src={Down.src} alt="┬" />
+    </button>
+</div>

@@ -1,11 +1,66 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Bulleted from "../components/Bulleted.astro";
+import Photo from "../components/Photo.astro";
 ---
 
 <Layout>
-	<Welcome />
+    <div class="flex">
+        <div class="h-full w-[round(down,(100%-27rem)/2,1rem)]"></div>
+        <pre
+            class="mb-8">
+█╗  █╗ █████╗ █╗  █╗ █████╗
+█║  █║ █╔══█║ █████║ █╔═══╝
+█████║ █║  █║ █╔█╔█║ ███╗
+█╔══█║ █║  █║ █║╚╝█║ █╔═╝
+█║  █║ █████║ █║  █║ █████╗
+╚╝  ╚╝ ╚════╝ ╚╝  ╚╝ ╚════╝</pre>
+    </div>
+
+    <p class="mb-8">
+        Hello, I'm Bálint, welcome to my <strike>website</strike> interactive DOS
+        application.
+    </p>
+    <p class="mb-8">
+        I work as a professional and hobbyist software developer, my main focus
+        being on visual mediums, such as web development and graphics
+        programming.
+    </p>
+    <p class="mb-8">
+        You can read more about me on the other pages of this website, you can
+        find the navigational links at the top of the terminal.
+    </p>
+    <p>
+        The lifelike photograph in incredible 39x26 resolution and 4 bit color
+        below is of me.
+    </p>
+    <br />
+
+    <div class="@6xl:flex @6xl:max-w-full @6xl:gap-4">
+        <div class="mb-8 flex">
+            <div class="h-full w-[round(down,(100%-39rem)/2,1rem)]"></div>
+            <Photo />
+        </div>
+        <div class="grow">
+            <p class="mb-8">The basic structure of this application:</p>
+            <Bulleted class="mb-8">
+                "Home" is where your heart takes you, but also this page.
+            </Bulleted>
+            <Bulleted class="mb-8">
+                The "About" section contains my career so far shortened to the
+                most important points alongside my contact details.
+            </Bulleted>
+            <Bulleted class="mb-8">
+                The "Projects" section is a sort of portfolio with some more
+                noteworthy side activities.
+            </Bulleted>
+            <Bulleted class="mb-8">
+                The "Blog" link takes you to my blog, where I write mostly about
+                graphics programming and similar GPU projects.
+            </Bulleted>
+            <Bulleted class="mb-8">
+                Finally "Source" takes you to the source code of this website.
+            </Bulleted>
+        </div>
+    </div>
 </Layout>

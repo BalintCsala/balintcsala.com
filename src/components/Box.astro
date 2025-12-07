@@ -1,0 +1,20 @@
+---
+import type { HTMLTag } from "astro/types";
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+    class?: string;
+    element?: HTMLTag;
+    edgeType: "embossed" | "debossed";
+}
+
+const { edgeType, class: className = "", element = "div" } = Astro.props;
+
+const edgeClass = edgeType == "embossed";
+
+const Element = element;
+---
+
+<Element class:list={[twMerge(edgeClass, className)]}>
+    <slot />
+</Element>

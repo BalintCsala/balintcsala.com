@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+html {
+    image-rendering: pixelated;
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 1023px) {
+    html {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 523px) {
+    html {
+        font-size: 0.5rem;
+    }
+}
+
+@font-face {
+    font-family: "W95";
+    src: url("/fonts/w95font.woff");
+}
+
+@font-face {
+    font-family: "DOS";
+    src: url("/fonts/LessPerfectDOSVGA.ttf");
+}
+
+@theme {
+    --font-sans: W95;
+    --font-mono: DOS;
+    --text-base: 2rem;
+
+    /* DOS */
+    --color-black: #000000;
+    --color-maroon: #800000;
+    --color-green: #008000;
+    --color-olive: #808000;
+    --color-navy: #000080;
+    --color-purple: #800080;
+    --color-teal: #008080;
+    --color-silver: #c0c0c0;
+    --color-gray: #808080;
+    --color-red: #ff0000;
+    --color-lime: #00ff00;
+    --color-yellow: #ffff00;
+    --color-blue: #0000ff;
+    --color-fuchsia: #ff00ff;
+    --color-aqua: #00ffff;
+    --color-white: #ffffff;
+}
+
+@utility embossed {
+    margin: 0.25rem;
+    box-shadow:
+        0 -0.125rem white,
+        -0.125rem 0 white,
+        -0.125rem -0.125rem white,
+        0.125rem -0.125rem #808080,
+        -0.125rem 0.125rem #808080,
+        0.125rem 0.125rem #808080,
+        -0.25rem -0.25rem #dfdfdf,
+        -0.25rem 0.125rem #dfdfdf,
+        0.125rem -0.25rem #dfdfdf,
+        -0.25rem 0.25rem black,
+        0.25rem -0.25rem black,
+        0.25rem 0.25rem black;
+}
+
+@utility embossed-button {
+    margin: 0.125rem 0.25rem 0.25rem 0.125rem;
+    box-shadow:
+        0 -0.125rem white,
+        -0.125rem 0 white,
+        -0.125rem -0.125rem white,
+        0.125rem -0.125rem #808080,
+        -0.125rem 0.125rem #808080,
+        0.125rem 0.125rem #808080,
+        -0.125rem 0.25rem black,
+        0.25rem -0.125rem black,
+        0.25rem 0.25rem black;
+}
+
+@utility debossed {
+    margin: 0.125rem 0.25rem 0.25rem 0.125rem;
+    box-shadow:
+        0 0.125rem #dfdfdf,
+        0.125rem 0 #dfdfdf,
+        0.125rem 0.125rem #dfdfdf,
+        -0.125rem 0.125rem #808080,
+        0.125rem -0.125rem #808080,
+        -0.125rem -0.125rem #808080,
+        0.25rem -0.125rem white,
+        -0.125rem 0.25rem white,
+        0.25rem 0.25rem white;
+}

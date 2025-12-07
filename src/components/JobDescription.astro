@@ -1,0 +1,32 @@
+---
+interface Props {
+    start: number;
+    end?: number;
+    company: string;
+    title: string;
+    responsibilities: string[];
+}
+
+const { start, end, company, title, responsibilities } = Astro.props;
+---
+
+<div class="flex overflow-y-hidden">
+    <p class="h-0 w-4 wrap-anywhere">Θ├{"│".repeat(10)}</p>
+    <div class="mb-8">
+        <pre
+            class="text-blue"> {start} - {end?.toString() ?? "    "} <span>{company}</span></pre>
+        <p>
+            ┐<span class="text-blue">{title}</span>
+        </p>
+        {
+            responsibilities.map((responsibility) => (
+                <div class="flex overflow-y-hidden">
+                    <p class="h-0 w-16 shrink-0 text-wrap wrap-anywhere">
+                        ├── {"│   ".repeat(10)}
+                    </p>
+                    <span>{responsibility}</span>
+                </div>
+            ))
+        }
+    </div>
+</div>

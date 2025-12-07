@@ -1,0 +1,301 @@
+---
+import Layout from "../layouts/Layout.astro";
+import JobDescription from "../components/JobDescription.astro";
+import Bulleted from "../components/Bulleted.astro";
+---
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        if (location.pathname != "/about") {
+            return;
+        }
+
+        const texts = [
+            {
+                iv: "KbNxWuiK1Uo5egvf",
+                tag: "thGPIppfHga/rg0Z4RTXPw==",
+                data: "JtTTyjJTLBzuT1H2hY3bfA==",
+            },
+            {
+                iv: "Ur9PYZYOHRp+MrYa",
+                tag: "s6i1AlIgy6yiNXyFWLCpfQ==",
+                data: "X3OG62MlnnEQGzeqz5ymNlP0k+HpuHbLCEQRNos=",
+            },
+            {
+                iv: "I++h/2VUTKtQoXDv",
+                tag: "e31SKtIcQA8yevjLCjSmqA==",
+                data: "2mjxFwKHmzxq",
+            },
+            {
+                iv: "R/Cgn+eZWyg4FnY8",
+                tag: "jYYjAcvh3laDn5R0SCHxCw==",
+                data: "w6dP0JoFvuIV0tCf/2rOvwvYYZI1X2Nu2z6pflEFRB9ZvcxRVrVI+lXJWZp1YMK46WHBnb3H0A==",
+            },
+            {
+                iv: "2UrviI3A+mBsEglY",
+                tag: "/J7v8avhWhJw6TUqm+sQYg==",
+                data: "pJzJI6aHwGMYdtrwcQjRB1tpmDOPn14=",
+            },
+            {
+                iv: "imOLRuJaclLwfSjg",
+                tag: "4X629PC8GMWnViFDaHIagw==",
+                data: "kc4OPAKR+EMx+ak+RztAJmjMVyhs",
+            },
+            {
+                iv: "SVwo+3+haGiYTNyD",
+                tag: "gO7EURVR1iyfcuht9i8Qfg==",
+                data: "4gtle27QAeoYkxB+Iw==",
+            },
+            {
+                iv: "LB3UmpOISwp42WUy",
+                tag: "bu3zxYiHxB/5WLw6ziDZmA==",
+                data: "fJWwaZdF8kWb",
+            },
+            {
+                iv: "QDM7cSK7tTpkaHMy",
+                tag: "e56GpGlA6OYN6SBWQvBDnw==",
+                data: "NKp9qaewLiY4OE3APeldSN2HT87J222i",
+            },
+            {
+                iv: "mlLDHlBTEDDpCUA7",
+                tag: "m6kQjFlyr4UtdycFAK2Bbw==",
+                data: "Qz89Rvik6JMeUAvYrvTEQdtcDE/7U/hAU+U+nYJ8r++QCIyH6pgaBqB7pGATnTvvBA==",
+            },
+            {
+                iv: "7IP/6PKGEIwEX2tp",
+                tag: "LwdMDox7JRfjx7M3vknedQ==",
+                data: "xJfpmUypirSQ/1ACoMhBjIRQjA+uD+yDj8H2WolB/YUY5PvTxg9cUvfz3B/LBjSKuHh3M3ubgbD9on54+rsR+dp7HE070azMB6Wo4JGwV8574YA7jWcUnN4=",
+            },
+            {
+                iv: "me0egio622LY4n4F",
+                tag: "lETErpSZggIcHojXNx1lhw==",
+                data: "wEtSkBqKEZqtlhNnm0ZLktVe+tVi0ip652OJ6bdBy40si5wUoYZOLPnrZJtfJ/44yOT+AmKrFpws6NNGt+3psqIDQ3b3k+SMlsmD",
+            },
+            {
+                iv: "b2oJyP8zNBBOUV96",
+                tag: "sWpIZ0AfC/wYF6cFg9lGtA==",
+                data: "Gx9jizIFXra9Szhl71yFTUaGeQM=",
+            },
+            {
+                iv: "ibSokIRcZunxOAQK",
+                tag: "2XdcXHSRF5TUZc0a/04B9Q==",
+                data: "5GmG9/01uKTS4msjBXM6gcs=",
+            },
+            {
+                iv: "ZBTNlbbAG1+sF+oI",
+                tag: "8CQ6tJqcBRkjNPaTYn0amg==",
+                data: "yzh/OVVPsfEehWaCU3KfjeEpmkR/MWY2eDR/QsvJpnFIxMG9bb4q9HR3JXUWhcPxdJJZ6lv6LwJjy9UHJXHbkk4JOByS3oMDKTtXTuoM9BzFGhH0a2wc0vOGTdWJzxL3iMofIinhSW8LrmfZbEOXH2lhoSUHEPy6XA==",
+            },
+            {
+                iv: "mjJApiAHKbDUu/w9",
+                tag: "HV6G7VE+bx9gtJwqqUTuZg==",
+                data: "ehBjY67enc6YJElJ9Zrb2tk3EhijOdcaXJo18akBCCyEpfvykcJa0kiV8Pk9ZE4C46msLaMYsQWunOAlQJAWf1vrc+j2ECaRTkr0OeSIrQ==",
+            },
+            {
+                iv: "l+G/Hzqx47IltQwm",
+                tag: "fOh5bEMhxFh8uj9MWGSn/w==",
+                data: "YOnfrMA53RDct6HpkMeEcV8=",
+            },
+            {
+                iv: "pze0BVAqAPAbraJc",
+                tag: "rq4oPWV7IlBG7dSj0MWfUg==",
+                data: "nRX1aiKbWtg8gWvUyxuuQ3ezNgDmvCBucmkzVbouid3G1w==",
+            },
+            {
+                iv: "P1FWMjT1OW9LSrkf",
+                tag: "vqYkbxnUttYJBGthD0u9VA==",
+                data: "T3NFgcqO6vK8uAmSAvr95xc0JybnxaawvSnLhmfT7anwPHweQbFYppZIUYacUtFTC20SlAeLC02gzO2VU9J4",
+            },
+            {
+                iv: "6dI7GFP2+FcX+MOJ",
+                tag: "sLQ1M8jYW1Tcxj28ScFDqQ==",
+                data: "J82MSjsyOPi/6fxNvX3l+O547h+/WfHPxTbU5/IKe5GDmOWuSA2756uVGEhFGs4yoTRLVgyrozlucz/OComxut0io9gqEnaj4i0e2A==",
+            },
+            {
+                iv: "nubm+x1PpSOUYpCQ",
+                tag: "lv5jIVcvr/ET3NBf5qD4Ag==",
+                data: "GKFUHS83",
+            },
+            {
+                iv: "C/kiOoqT/nEgj8uP",
+                tag: "acnTI8uD/i8jHOaj30Blgg==",
+                data: "X6CkpzX+SJ2Sq3IoqOjySHPjGw==",
+            },
+            {
+                iv: "pGMV/ZlQ5FEj6UoQ",
+                tag: "SPA/ZOujTy2uSNw4CjSz+w==",
+                data: "hWWB30cziJWuEeoNgpg6PjaFAubQYNYmFoNQJIc5YeOUeS7WyGJY10NPGJXanLA6RJkxm7OMoNFQKtPA+OvyoT8C30UdyuLxv73OjXjVi0jtG3pXbpZlRjku6u6B",
+            },
+            {
+                iv: "bw7JgWl/9D7IoqnK",
+                tag: "WN39MPLlqD7ZpQ1/2q0j0A==",
+                data: "2cmstI9uN9mXto8GbN+dRHIbVmPD9wpF7wVZqBPCl4ksP+9Gpfqkd9fAw/2p6dVDdVPTNokpsLlEo2Z1PliC9/7LB1s+pBkp+b7b9GYnFybJ0bR+WJ52cEajgxl231XxnSMgHu6nFjQ2iY/GDKs=",
+            },
+        ];
+
+        async function tryDecrypt(
+            key: CryptoKey,
+            enc: { iv: string; tag: string; data: string },
+        ) {
+            try {
+                const iv = Uint8Array.from(atob(enc.iv), (c) =>
+                    c.charCodeAt(0),
+                );
+                const tag = Uint8Array.from(atob(enc.tag), (c) =>
+                    c.charCodeAt(0),
+                );
+                const data = Uint8Array.from(atob(enc.data), (c) =>
+                    c.charCodeAt(0),
+                );
+
+                const combined = new Uint8Array(data.length + tag.length);
+                combined.set(data);
+                combined.set(tag, data.length);
+
+                const decrypted = await crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv },
+                    key,
+                    combined,
+                );
+
+                return new TextDecoder().decode(decrypted);
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function deriveKey(password: string) {
+            const hash = await crypto.subtle.digest(
+                "SHA-256",
+                new TextEncoder().encode(password),
+            );
+
+            return crypto.subtle.importKey(
+                "raw",
+                hash,
+                { name: "AES-GCM" },
+                false,
+                ["decrypt"],
+            );
+        }
+
+        const encodingRegex = /^ENC:(\d+)/;
+        const searchParams = new URLSearchParams(location.search);
+        if (searchParams.has("accessCode")) {
+            localStorage.setItem("accessCode", searchParams.get("accessCode")!);
+        }
+        let password = localStorage?.getItem("accessCode") ?? "missing";
+
+        deriveKey(password).then(async (key) => {
+            const elements = [...document.querySelectorAll("*")];
+            const results = await Promise.all(
+                elements.map(async (element, i) => {
+                    const match = encodingRegex.exec(element.innerHTML.trim());
+                    if (match) {
+                        const index = parseInt(match[1]);
+                        const text = await tryDecrypt(key, texts[index]);
+                        if (!text) {
+                            return false;
+                        }
+                        element.innerHTML = text;
+                    }
+                    const attributes = [...element.attributes];
+                    for (const attribute of attributes) {
+                        if (!attribute.nodeValue) continue;
+                        const match = encodingRegex.exec(
+                            attribute.nodeValue.trim(),
+                        );
+                        if (match) {
+                            const index = parseInt(match[1]);
+                            const text = await tryDecrypt(key, texts[index]);
+                            if (!text) {
+                                return false;
+                            }
+                            element.setAttribute(attribute.nodeName, text);
+                        }
+                    }
+                    return true;
+                }),
+            );
+
+            const success = document.querySelector(
+                "#success",
+            ) as HTMLDivElement;
+            const failure = document.querySelector(
+                "#failure",
+            ) as HTMLDivElement;
+            if (!results.every((result) => result)) {
+                failure.style.opacity = "100%";
+                success.style.display = "none";
+            } else {
+                success.style.opacity = "100%";
+                failure.style.display = "none";
+            }
+        });
+    });
+</script>
+
+<Layout>
+    <div class="flex">
+        <div class="h-full w-[round(down,(100%-35rem)/2,1rem)]"></div>
+        <pre
+            class="mb-8">
+    abo utabo   utab  ou  ta boutab
+   outa bo  ut ab  ou ta  bo   ut
+  ab ou tabou  ta  bo ut  ab   ou
+ tabout ab  ou ta  bo ut  ab   ou
+ta   bo utabou  tabo   utab    ou
+        </pre>
+    </div>
+    <div class="opacity-0" id="failure">
+        <p class="mb-8">
+            Sorry, but this content is encrypted by default. If I sent you this
+            website directly (and you didn't just find the page linked on a
+            social platform) you should've received the password attached in the
+            url parameters.
+        </p>
+        <p>
+            Please make sure you didn't accidentally remove it and if you
+            haven't, let me know as soon as possible and I'll fix it.
+        </p>
+    </div>
+    <div class="opacity-0" id="success">
+        <p class="mb-8 underline">ENC:0</p>
+        <Bulleted>ENC:1</Bulleted>
+        <Bulleted>
+            <span>ENC:2</span>
+            <a class="text-fuchsia underline" href="ENC:3" target="_blank">
+                ENC:4
+            </a>
+        </Bulleted>
+        <Bulleted class="mb-8">ENC:5</Bulleted>
+        <p class="mb-8 underline">ENC:6</p>
+        <JobDescription
+            start={2025}
+            company="ENC:7"
+            title="ENC:8"
+            responsibilities={["ENC:9", "ENC:10", "ENC:11"]}
+        />
+        <JobDescription
+            start={2024}
+            end={2025}
+            company="ENC:12"
+            title="ENC:13"
+            responsibilities={["ENC:14", "ENC:15"]}
+        />
+        <JobDescription
+            start={2023}
+            end={2024}
+            company="ENC:16"
+            title="ENC:17"
+            responsibilities={["ENC:18", "ENC:19"]}
+        />
+        <JobDescription
+            start={2019}
+            end={2022}
+            company="ENC:20"
+            title="ENC:21"
+            responsibilities={["ENC:22", "ENC:23"]}
+        />
+    </div>
+</Layout>

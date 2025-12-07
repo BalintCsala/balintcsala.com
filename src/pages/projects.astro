@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import JobDescription from "./about/JobDescription.astro";
+import Bulleted from "../components/Bulleted.astro";
+---
+
+<Layout>
+    <div class="flex">
+        <div class="h-full w-[round(down,(100%-40rem)/2,1rem)]"></div>
+        <pre
+            class="mb-8">
+░░░  ░░░   ░░   ░░░ ▒▒▒▒  ▒▒  ▒▒▒▒▒  ▓▓▓
+░  ░ ░  ░ ░  ▒   ▒  ▒    ▒  ▓   ▓   ▓   
+░░░  ▒▒▒  ▒  ▒   ▒  ▓▓   ▓      ▓    ██ 
+▒    ▒  ▒ ▒  ▓ ▓ ▓  ▓    ▓  █   █      █
+▒    ▓  ▓  ▓▓   ▓   ████  ██    █   ███ </pre>
+    </div>
+    <p class="mb-8 underline">Graphics development:</p>
+    <Bulleted>
+        <a
+            class="text-fuchsia underline"
+            href="https://szakdoga.balintcsala.com"
+            target="_blank"
+        >
+            Voxel cone tracer</a
+        > (Requires a WebGPU capable browser)
+        <Bulleted>Rust</Bulleted>
+        <Bulleted>WebGPU</Bulleted>
+    </Bulleted>
+    <Bulleted>
+        <a
+            class="text-fuchsia underline"
+            href="https://github.com/BalintCsala/VanillaPuddingTart"
+            target="_blank"
+        >
+            Path tracing implemented within a vanilla minecraft resourcepack
+        </a>
+        <Bulleted>GLSL</Bulleted>
+        <Bulleted>JavaScript (Node)</Bulleted>
+    </Bulleted>
+    <Bulleted class="mb-8">
+        <a
+            class="text-fuchsia underline"
+            href="https://github.com/BalintCsala/RaytracingEngineMT"
+            target="_blank"
+        >
+            Real time path tracer
+        </a>
+        <Bulleted>C++ 23</Bulleted>
+        <Bulleted>Vulkan</Bulleted>
+        <Bulleted>Hardware RT cores</Bulleted>
+    </Bulleted>
+    <p class="mb-8 underline">Web development:</p>
+    <Bulleted class="mb-8">
+        <a
+            class="text-fuchsia underline"
+            href="https://github.com/BalintCsala/blog"
+            target="_blank"
+        >
+            My blog
+        </a>
+        <Bulleted>AstroJS</Bulleted>
+    </Bulleted>
+    <p class="mb-8 underline">Work projects:</p>
+    <Bulleted>
+        <a
+            class="text-fuchsia underline"
+            href="https://www.plantechchallenge.hu/"
+            target="_blank"
+        >
+            Audi Plan@Tech Challenge
+        </a>
+        <Bulleted>VueJS</Bulleted>
+    </Bulleted>
+</Layout>
